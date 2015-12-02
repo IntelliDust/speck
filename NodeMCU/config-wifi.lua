@@ -12,6 +12,10 @@ cfg.wifi.ap.net.netmask="255.255.255.0"
 cfg.wifi.ap.net.gw="192.168.111.1"
 
 cfg.wifi.sta={}
-cfg.wifi.sta.ssid="Internet"
-cfg.wifi.sta.pwd=""
+cfg.wifi.sta.mode=0
+-- 0=fixed one 
+-- 1=fixed client
+-- 2=one of X (best signal of free wifi)
+cfg.wifi.sta.ssid="STARA_KRCMA"
+cfg.wifi.sta.pwd="sandeman"
 
