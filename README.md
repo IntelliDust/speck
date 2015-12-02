@@ -2,6 +2,8 @@
 A (very) simple framerowk in Lua for the ESP8266 running the NodeMCU firmware for fast development.
 Speck is an client system for implementation smart home appliance that comunicate with [IntelliDust - Broom](https://github.com/IntelliDust/broom) acting like simple aggregating server
 
+HomePage: (http://www.intellidust.eu)
+
 ## Inspiraton - included code
 * [marcoskirsch - nodemcu-httpserver](https://raw.githubusercontent.com/marcoskirsch/nodemcu-httpserver/)
 
