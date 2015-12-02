@@ -13,7 +13,7 @@ local compileAndRemoveIfNeeded = function(f)
    end
 end
 
-local SpeckFiles = {'config.lua', 'kernel.lua', 'service-00-garbage.lua'}
+local SpeckFiles = {'config.lua', 'config-i2c.lua', 'kernel.lua', 'service-00-garbage.lua', 'service-01-core.lua', 'service-02-wifi.lua'}
 for i, f in ipairs(SpeckFiles) do compileAndRemoveIfNeeded(f) end
 
 compileAndRemoveIfNeeded = nil

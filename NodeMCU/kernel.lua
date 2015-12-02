@@ -15,5 +15,7 @@ print('Core API ready.')
 print('Initialising services')
 
 dofile("service-00-garbage.lc")
+dofile("service-01-core.lc")
+dofile("service-02-wifi.lc")
 
 print('Services started')

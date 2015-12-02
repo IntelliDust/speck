@@ -2,8 +2,9 @@ cfg.wifi={}
 cfg.wifi.mode = wifi.STATIONAP
 
 cfg.wifi.ap={}
-cfg.wifi.ap.ssid="IntelliDust-" .. wifi.ap.getmac():gsub(":",""):upper()
-cfg.wifi.ap.pwd="12345678"
+cfg.wifi.ap.rf={}
+cfg.wifi.ap.rf.ssid="IntelliDust-" .. wifi.ap.getmac():gsub(":",""):upper()
+cfg.wifi.ap.rf.pwd="12345678"
 
 cfg.wifi.ap.net={}
 cfg.wifi.ap.net.ip="192.168.111.1"
