@@ -13,4 +13,10 @@ HomePage: (http://www.intellidust.eu)
 * HTTP Basic Authentication
 
 ## TO-DO
+
 project just started, so there are more to do, that is done ;)
+
+
+## NodeMCU LUA restrictions
+
+* Timers 0-3 are alocated for system purposes. So if you need to use TMR.ALARM() do not use 0-3 timers. Same rule for TMR.STOP()

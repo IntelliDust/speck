@@ -1,3 +1,4 @@
+print('Heap=',node.heap())
 print('IntelliDust Speck loading')
 
 print('Compiling LUA files')
@@ -12,10 +13,11 @@ local compileAndRemoveIfNeeded = function(f)
    end
 end
 
-local SpeckFiles = {'config.lua', 'kernel.lua'}
+local SpeckFiles = {'config.lua', 'kernel.lua', 'service-00-garbage.lua'}
 for i, f in ipairs(SpeckFiles) do compileAndRemoveIfNeeded(f) end
 
 compileAndRemoveIfNeeded = nil
 SpeckFiles = nil
+collectgarbage()
 
 dofile("kernel.lc")
