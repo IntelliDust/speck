@@ -4,7 +4,7 @@
 
 return function (connection, req, args)
    dofile("core-httpserver-header.lc")(connection, 200, args.ext, args.gzipped)
-   --print("Begin sending:", args.file)
+   -- print("Begin sending:", args.file)
    -- Send file in little chunks
    local continue = true
    local bytesSent = 0
@@ -15,7 +15,7 @@ return function (connection, req, args)
       -- to support multiple simultaneous clients.
       file.open(args.file)
       file.seek("set", bytesSent)
-      local chunk = file.read(256)
+      local chunk = file.read(1024)
       file.close()
       if chunk == nil then
          continue = false
@@ -23,8 +23,9 @@ return function (connection, req, args)
          connection:send(chunk)
          bytesSent = bytesSent + #chunk
          chunk = nil
-         --print("Sent" .. args.file, bytesSent)
+         -- print("Sent " .. args.file, bytesSent)
+         tmr.wdclr() -- loop can take a while for long files. tmr.wdclr() prevent watchdog to restart module
       end
    end
-   --print("Finished sending:", args.file)
+   --  print("Finished sending:", args.file)
 end

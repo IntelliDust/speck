@@ -1,4 +1,5 @@
-print("Service: WiFi service starting")
+cfg.strings.wifi_name="WiFi service"
+print("Service: "..cfg.strings.wifi_name.." "..cfg.strings.starting)
 
 wifi_start_ap = nil
 function wifi_start_ap()
@@ -13,6 +14,17 @@ end
 wifi_start_sta = nil
 function wifi_start_sta()
   print(" Starting WiFi Station")
+  if cfg.wifi.sta.mode==0 then
+    log_debug('  STA '..'MAC: ',wifi.sta.getmac())
+    wifi.sta.config(cfg.wifi.sta.ssid, cfg.wifi.sta.pwd)
+    wifi.sta.connect()
+  elseif cfg.wifi.sta.mode==1 then
+     print(" Error: STA mode "..cfg.wifi.sta.mode.." NOT IMPLEMENTED YET")
+  elseif cfg.wifi.sta.mode==2 then
+     print(" Error: STA mode "..cfg.wifi.sta.mode.." NOT IMPLEMENTED YET")
+  else 
+     print(" Error: unknown STA mode "..cfg.wifi.sta.mode)
+  end
 end
 
 print("Wifi mode configured to "..cfg.wifi.mode)
@@ -33,5 +45,5 @@ end
 wifi_start_sta = nil
 wifi_start_ap = nil
 
-print("Service: WiFi service started")
+print("Service: WiFi started")
 
