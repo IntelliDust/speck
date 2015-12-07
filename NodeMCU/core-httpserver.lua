@@ -1,59 +1,36 @@
 return function (port)
 
-local http_server_name="IntelliDustSpeck"
+local http_server_name=cfg.s.sv.."Speck"
 
 local function validateMethod(method)
 --   local httpMethods = {GET=true, HEAD=true, POST=true, PUT=true, DELETE=true, TRACE=true, OPTIONS=true, CONNECT=true, PATCH=true}
    local httpMethods = {GET=true, HEAD=true, POST=true, OPTIONS=true, CONNECT=true}
    return httpMethods[method]
 end
-local function uriToFilename(uri)
-   return "http-" .. string.sub(uri, 2, -1)
+local function uriToFilename(u)
+   return "http-" .. string.sub(u, 2, -1)
 end
-local function hex_to_char(x)
-  return string.char(tonumber(x, 16))
-end
-local function uri_decode(input)
-  return input:gsub("%+", " "):gsub("%%(%x%x)", hex_to_char)
-end
-local function parseArgs(args)
-   local r = {}; i=1
-   if args == nil or args == "" then return r end
-   for arg in string.gmatch(args, "([^&]+)") do
-      local name, value = string.match(arg, "(.*)=(.*)")
-      if name ~= nil then r[name] = uri_decode(value) end
-      i = i + 1
-   end
-   return r
-end
-local function parseFormData(body)
-  local data = {}
-  for kv in body.gmatch(body, "%s*&?([^=]+=[^&]+)") do
-    local key, value = string.match(kv, "(.*)=(.*)")
-    data[key] = uri_decode(value)
-  end
-  return data
-end
-local function getRequestData(payload)
-  local requestData
+
+local function getrDt(payload)
+  local rDt
   return function ()
-    if requestData then
-      return requestData
+    if rDt then
+      return rDt
     else
       local mimeType = string.match(payload, "Content%-Type: (%S+)\r\n")
       local body_start = payload:find("\r\n\r\n", 1, true)
       local body = payload:sub(body_start, #payload)
       payload = nil
       collectgarbage()
-      if mimeType == "application/json" then
+      if mimeType == "application".."/json" then
         print("JSON: " .. body)
-        requestData = cjson.decode(body)
-      elseif mimeType == "application/x-www-form-urlencoded" then
-        requestData = parseFormData(body)
+        rDt = cjson.decode(body)
+      elseif mimeType == "application".."x-www-form-urlencoded" then
+        rDt = parseFormData(body)
       else
-        requestData = {}
+        rDt = {}
       end
-      return requestData
+      return rDt
     end
   end
 end
@@ -88,17 +65,14 @@ local function parseUri(uri)
    return r
 end
 local function parse_http_request(request)
-   print((tmr.now()/1000/100).." parse_http_request started ")
    local e = request:find("\r\n", 1, true)
    if not e then return nil end
    local line = request:sub(1, e - 1)
-   print((tmr.now()/1000/100).." found line "..line)
    local r = {}
    _, i, r.method, r.request = line:find("^([A-Z]+) (.-) HTTP/[1-9]+.[0-9]+$")
    r.methodIsValid = validateMethod(r.method)
    r.uri = parseUri(r.request)
-   r.getRequestData = getRequestData(request)
-   print((tmr.now()/1000/100).." parse_http_request ended ")
+   r.getrDt = getrDt(request)
    return r
 end
 -- END: core-httpserver-request
@@ -111,8 +85,9 @@ local core_httpserver_header = function (connection, code, extension, gzip)
    end
    local function getMimeType(ext)
       local gzip = false
-      local mt = {css = "text/css", gif = "image/gif", html = "text/html", ico = "image/x-icon", jpeg = "image/jpeg", jpg = "image/jpeg", js = "application/javascript", json = "application/json", png = "image/png", xml = "text/xml"}
-      if mt[ext] then contentType = mt[ext] else contentType = "text/plain" end
+      local mt = {css = "text/".."css", gif = "image/".."gif", html = "text/".."html", ico = "image/".."x-icon", jpeg = "image/".."jpeg", jpg = "image/".."jpeg", js = "application/".."javascript", 
+		  json = "application/".."json", png = "image/".."png", xml = "text/".."xml"}
+      if mt[ext] then contentType = mt[ext] else contentType = "text/".."plain" end
       return {contentType = contentType, gzip = gzip}
    end
    local mimeType = getMimeType(extension)
@@ -123,6 +98,7 @@ local core_httpserver_header = function (connection, code, extension, gzip)
    end
    connection:send("Connection: close\r\n\r\n")
 end
+local function core_httpserver_static(connection, req, args)
    core_httpserver_header(connection, 200, args.ext, args.gzipped)
    print("HEAP "..node.heap().." bytes")
    local continue = true
@@ -171,9 +147,9 @@ end
         print("Method: " .. method);
         print("uri.file: " .. uri.file);
         if #(uri.file) > 32 then
-          print("too long filename: " .. #(uri.file));
+          print("TL FN: " .. #(uri.file)); -- too long filename
           local args = {}
-          args = {code = 400, errorString = "Bad Request"}
+          args = {code = 400, errorString = "BadReq"}
           handle_http_error(con, req, args)
 	else
           print((tmr.now()/1000/100).." handling filename: " .. uri.file);
@@ -185,7 +161,7 @@ end
                  file.close()
 
                  if fileExists then
-                    print("gzip variant exists, serving that one")
+                    print("gzip exist")
                     uri.file = uri.file .. ".gz"
                     uri.isGzipped = true
                  end
