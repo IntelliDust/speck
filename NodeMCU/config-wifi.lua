@@ -1,7 +1,7 @@
 cfg.wifi={}
 cfg.wifi.m = 2			-- wifi.STATIONAP
 
-cfg.wifi.a={}                   -- Station cgf
+cfg.wifi.a={}                   -- Station cfg
 cfg.wifi.a.r={}
 cfg.wifi.a.r.ssid=cfg.s.s.. wifi.ap.getmac():gsub(":",""):upper()
 cfg.wifi.a.r.pwd="12345678"
