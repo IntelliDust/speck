@@ -1,7 +1,7 @@
 cfg.http = {}
-cfg.http.port = 80
-cfg.http.auth = {}
-cfg.http.auth.enabled = true
-cfg.http.auth.realm = "IntelliDust-Speck" 	-- displayed in the login dialog users get
-cfg.http.auth.user = "admin"                    -- default admin user name
-cfg.http.auth.password = "admin" 		-- default admin password. PLEASE change this ASAP
+cfg.http.p = 80                         -- port
+cfg.http.a = {}            		-- auth
+cfg.http.a.e = false                    -- auth.enabled
+cfg.http.a.r = "IntelliDust-Speck" 	-- realm
+cfg.http.a.u = "admin"             	-- admin user name
+cfg.http.a.p = "admin" 			-- admin password.

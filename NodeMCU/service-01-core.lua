@@ -1,1 +1,2 @@
-print("Service: Core service executed")
+hp()
+print(cfg.s.sv..": Core DN")

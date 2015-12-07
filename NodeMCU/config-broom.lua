@@ -1,3 +1,3 @@
-cfg.broom={}
-cfg.broom.base_url=""
-cfg.broom.devid=wifi.ap.getmac():gsub(":",""):upper()
+cfg.brm={}
+cfg.brm.b=""
+cfg.brm.dd=wifi.ap.getmac():gsub(":",""):upper()

@@ -1,6 +1,6 @@
 cfg.mmqt={}
-cfg.mmqt.client_id=""
-cfg.mmqt.username=""
-cfg.mmqt.password=""
-cfg.mmqt.server=""
-cfg.mmqt.port=0
+cfg.mmqt.cid=""			-- client id
+cfg.mmqt.u=""			-- username
+cfg.mmqt.p=""			-- password
+cfg.mmqt.s=""			-- server
+cfg.mmqt.prt=0			-- port
