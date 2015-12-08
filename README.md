@@ -31,39 +31,39 @@ For PC side compilation LUA to LC you need to download compiler from (https://co
 ```
 NodeMCU 0.9.6 build 20150704  powered by Lua 5.1.4
 Speeding CPU160MHZ
-Heap=	28248
+Heap=	29984
 IntelliDust Speck loading
 Compiling LUA files
 Compiling LUA config files
- Compiling:	config.lua
-Heap=	27992
- Compiling:	config-broom.lua
-Heap=	27992
- Compiling:	config-strings.lua
-Heap=	27992
- Compiling:	config-wifi.lua
-Heap=	27992
-Heap=	26952
+ Compiling:	cfg.lua
+Heap=	29776
+ Compiling:	cfg-brm.lua
+Heap=	29776
+ Compiling:	cfg-st.lua
+Heap=	29776
+ Compiling:	cfg-wf.lua
+Heap=	29776
+Heap=	28688
 IntelliDust Speck
-Heap=	25968
-Config loaded.
-Heap=	21096
+Heap=	27712
+Heap=	22760
 Kernel GO
-Heap=	20376
+Heap=	21696
 Service: CG DN(60 s.)
-Heap=	19352
+Heap=	20072
+Service: Core ST
+Service: Core DN
+Heap=	19704
+Heap=	17872
 Service: WiFi ST
-Mode:3
+Mode:2
 AP
 DEBUG: 	AP MAC: 5e:cf:7f:06:f4:93
 DEBUG: 	AP SSID: IntelliDust5ECF7F06F493
 DEBUG: 	AP PASS: 12345678
-Station
-DEBUG: 	STA MAC: 5c:cf:7f:06:f4:93
 Service: WiFi DN
 Kernel DN
-Heap=	18376
+Heap=	16472
 > =node.heap()
-29408
-> 
-```
+28832
+>```
