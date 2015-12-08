@@ -1,9 +1,6 @@
 hp()
 print('IntelliDust Speck')
-
-dofile("config.lc")
-print('Config loaded.')
-
+dofile("cfg.lc")
 log_debug = nil
 function log_debug(message)
   if cfg.dbg==1 then
@@ -11,14 +8,11 @@ function log_debug(message)
   end
 end
 hp()
-
--- print('Core API ready.')
-
 print("Kernel".." GO")
 
-dofile("service-00-garbage.lc")
---dofile("service-01-core.lc")
-dofile("service-02-wifi.lc")
+dofile("svc00-gbc.lc")
+dofile("svc01-cr.lc")
+dofile("svc02-wf.lc")
 --dofile('service-08-httpd.lc')
 
 print("Kernel".." DN")

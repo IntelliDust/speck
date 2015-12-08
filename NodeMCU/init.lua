@@ -27,11 +27,11 @@ local compileAndRemoveIfNeeded = function(f,x)
    end
 end
 
-local SpeckFiles = {'kernel.lua', 'service-00-garbage.lua', 'service-01-core.lua', 'service-02-wifi.lua', 'service-08-httpd.lua', 'core-httpserver.lua', 'core-httpserver-basicauth.lua', 'core-httpserver-conf.lua', 'core-httpserver-b64decode.lua', 'core-httpserver-request.lua', 'core-httpserver-static.lua', 'core-httpserver-header.lua', 'core-httpserver-error.lua'}
+local SpeckFiles = {'kernel.lua', 'svc00-gbc.lua', 'svc01-cr.lua', 'svc02-wf.lua', 'svc08-httpd.lua', 'core-httpserver.lua','core-httpserver-utils.lua', }
 for i, f in ipairs(SpeckFiles) do compileAndRemoveIfNeeded(f,1) end
 
 print('Compiling LUA config files')
-local ConfigFiles = {'config.lua', 'config-broom.lua', 'config-http.lua', 'config-i2c.lua', 'config-mmqt.lua', 'config-strings.lua', 'config-wifi.lua' }
+local ConfigFiles = {'cfg.lua', 'cfg-brm.lua', 'cfg-http.lua', 'cfg-i2c.lua', 'cfg-mmqt.lua', 'cfg-st.lua', 'cfg-wf.lua' }
 for i, f in ipairs(ConfigFiles) do compileAndRemoveIfNeeded(f,0) end
 
 compileAndRemoveIfNeeded = nil
