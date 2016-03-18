@@ -31,7 +31,7 @@ local SpeckFiles = {'kernel.lua', 'svc00-gbc.lua', 'svc01-cr.lua', 'svc02-wf.lua
 for i, f in ipairs(SpeckFiles) do compileAndRemoveIfNeeded(f,1) end
 
 print('Compiling LUA config files')
-local ConfigFiles = {'cfg.lua', 'cfg-brm.lua', 'cfg-http.lua', 'cfg-i2c.lua', 'cfg-mmqt.lua', 'cfg-st.lua', 'cfg-wf.lua' }
+local ConfigFiles = {'cfg.lua', 'cfg-brm.lua',  'cfg-gpio.lua', 'cfg-http.lua', 'cfg-i2c.lua', 'cfg-mmqt.lua', 'cfg-st.lua', 'cfg-wf.lua' }
 for i, f in ipairs(ConfigFiles) do compileAndRemoveIfNeeded(f,0) end
 
 compileAndRemoveIfNeeded = nil

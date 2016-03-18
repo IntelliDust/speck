@@ -15,5 +15,7 @@ dofile("svc01-cr.lc")
 dofile("svc02-wf.lc")
 --dofile('service-08-httpd.lc')
 
+dofile("test-ws.lua")
+
 print("Kernel".." DN")
 hp()
